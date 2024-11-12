@@ -11,15 +11,15 @@ import {
 } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge";  
 import { TaskType } from '@/app/types/taks.type';
-import { Button } from '@/components/ui/button';
 import { Checkbox } from "@/components/ui/checkbox";
-import { MdMode } from "react-icons/md";
-import { MdDelete } from "react-icons/md";
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { changeTaskState, deleteTask } from '@/app/features/task.feature';
 import { toast } from '@/hooks/use-toast';
 import TaksManagementBodyDialog from '../../ui/dialogs/taksManagementBodyDialog';
 import TaksManagementBodyDeleteDialog from '../../ui/dialogs/taksManagementBodyDeleteDialog';
+import { MdOutlineWatchLater } from "react-icons/md";
+import moment from 'moment-timezone';
+
 
 const TaksManagementBody = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -57,6 +57,10 @@ const TaksManagementBody = () => {
                   <p>{task.description}</p>
                 </CardContent>
                 <CardFooter>
+                  <div className='flex gap-2 items-center'>
+                    <MdOutlineWatchLater />
+                    <p className='text-gray-500 text-xs'>Created at: {moment(task.created_at).tz("America/Lima").format("YYYY-MM-DD hh:mm:ss A")}</p>
+                  </div>
                   <div className="flex flex-row w-full justify-end items-center gap-2">
                     <TaksManagementBodyDialog task={task} />
                     <TaksManagementBodyDeleteDialog task={task} />

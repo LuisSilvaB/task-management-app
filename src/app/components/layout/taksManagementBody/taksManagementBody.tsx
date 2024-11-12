@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -13,7 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import { TaskType } from '@/app/types/taks.type';
 import { Checkbox } from "@/components/ui/checkbox";
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { changeTaskState, deleteTask } from '@/app/features/task.feature';
+import { changeTaskState } from '@/app/features/task.feature';
 import { toast } from '@/hooks/use-toast';
 import TaksManagementBodyDialog from '../../ui/dialogs/taksManagementBodyDialog';
 import TaksManagementBodyDeleteDialog from '../../ui/dialogs/taksManagementBodyDeleteDialog';
@@ -24,7 +23,6 @@ import moment from 'moment-timezone';
 const TaksManagementBody = () => {
   const dispatch = useDispatch<AppDispatch>();
   const tasks = useSelector((state:RootState) => state.task.tasks);
-  const loadingTasks = useSelector((state:RootState) => state.task.loadingAddTask);
 
   const onChangeTaskState = async (id: number, currentState: boolean) => {
     const dataChanged = dispatch(changeTaskState({ id, state: currentState }));

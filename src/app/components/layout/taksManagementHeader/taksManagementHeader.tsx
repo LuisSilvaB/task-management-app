@@ -1,14 +1,12 @@
 import React from 'react'
 import { poppins } from '@/fonts'
 import { filterTaskByState, getAllTasks, searchTaskByName } from "@/app/features/task.feature";
-import { AppDispatch, RootState } from "@/redux/store";
+import { AppDispatch,  } from "@/redux/store";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import TaksManagementBodyDialog from '../../ui/dialogs/taksManagementBodyDialog';
 import { Input } from '@/components/ui/input';
-import { toast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
-import { revalidatePath } from 'next/cache';
 import { MdFilterAltOff } from "react-icons/md";
 
 const TaksManagementHeader = () => {
@@ -19,15 +17,16 @@ const TaksManagementHeader = () => {
   };
 
   const onSearchTaskByName = async (name: string) => {
-    const dataSearched = dispatch(searchTaskByName(name));
+    dispatch(searchTaskByName(name));
   }
 
   const onFilterTaskByState = async (state: boolean) => {
-    const dataFiltered = dispatch(filterTaskByState(state));
+    dispatch(filterTaskByState(state));
   }
 
   useEffect(() => {
     fetchTasks();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

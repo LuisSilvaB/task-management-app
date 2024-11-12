@@ -58,32 +58,9 @@ const sizeClasses = {
 };
   
 
-const colors: { [key: string]: string } = {
-  white: "text-white",
-  black: "text-black",
-  gray: "text-gray-500",
-  red: "text-red-500",
-  yellow: "text-yellow-500",
-  green: "text-green-500",
-  blue: "text-blue-500",
-  indigo: "text-indigo-500",
-  purple: "text-purple-500",
-  pink: "text-pink-500",
-  "atomic-50": "text-atomic-tangerine-50",
-  "atomic-100": "text-atomic-tangerine-100",
-  "atomic-200": "text-atomic-tangerine-200",
-  "atomic-300": "text-atomic-tangerine-300",
-  "atomic-400": "text-atomic-tangerine-400",
-  "atomic-500": "text-atomic-tangerine-500",
-  "atomic-600": "text-atomic-tangerine-600",
-  "atomic-700": "text-atomic-tangerine-700",
-  "atomic-800": "text-atomic-tangerine-800",
-  "atomic-900": "text-atomic-tangerine-900",
-  "atomic-950": "text-atomic-tangerine-950",
-  "text-gray-100": "text-gray-100",
-};
 
-const Icon: React.FC<IconProps> = ({ remixIconClass, size = "md", color = "black", ...props }) => {
+
+const Icon: React.FC<IconProps> = ({ remixIconClass, size = "md", ...props }) => {
   return (
     <div {...props}>
       <i className={`${remixIconClass} ${sizeClasses[size]}`} />

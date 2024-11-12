@@ -26,9 +26,9 @@ import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox";
 import { AppDispatch } from "@/redux/store";
 import { useDispatch } from "react-redux";
-import { addTask, changeTaskState, updateTask } from "@/app/features/task.feature";
+import { addTask, updateTask } from "@/app/features/task.feature";
 import { toast } from "@/hooks/use-toast";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 type TaksManagementBodyDialogProps = {
   task?: TaskType;
@@ -76,6 +76,7 @@ const TaksManagementBodyDialog = ({ task } :TaksManagementBodyDialogProps) => {
   }
 
   const onError = (error: FieldErrors<Omit<TaskType, "id" | "created_at">>) => {
+    console.log(error);
     toast({
       title: "Vefifique los campos ingresados",
       description: "Error al registrar",
@@ -83,21 +84,21 @@ const TaksManagementBodyDialog = ({ task } :TaksManagementBodyDialogProps) => {
       variant: "destructive"
     });
   }
-  useEffect(() => {
-    if (toggle.isOpen) {
-      if (task) {
-        formMethods.setValue("title", task.title);
-        formMethods.setValue("description", task.description);
-        formMethods.setValue("state", task.state);
-      } else {
-        formMethods.reset({
-          title: "",
-          description: "",
-          state: false,
-        });
-      }
+useEffect(() => {
+  if (toggle.isOpen) {
+    if (task) {
+      formMethods.setValue("title", task.title);
+      formMethods.setValue("description", task.description);
+      formMethods.setValue("state", task.state);
+    } else {
+      formMethods.reset({
+        title: "",
+        description: "",
+        state: false,
+      });
     }
-  }, [toggle.isOpen, task, formMethods]);
+  }
+}, [toggle.isOpen, task, formMethods]);
 
   return (
     <FormProvider {...formMethods}>

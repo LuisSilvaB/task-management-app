@@ -216,30 +216,30 @@ const taskSlice = createSlice({
   },
   extraReducers: (builder) => {
     // getAllTasks
-    builder.addCase(getAllTasks.pending, (state, action) => {
+    builder.addCase(getAllTasks.pending, (state) => {
       state.loadingTasks = true;
     });
     builder.addCase(getAllTasks.fulfilled, (state, action) => {
       state.loadingTasks = false;
       state.tasks = action.payload ?? [];
     });
-    builder.addCase(getAllTasks.rejected, (state, action) => {
+    builder.addCase(getAllTasks.rejected, (state) => {
       state.loadingTasks = false;
       state.tasks = [];
     });
     // addTask
-    builder.addCase(addTask.pending, (state, action) => {
+    builder.addCase(addTask.pending, (state) => {
       state.loadingAddTask = true;
     });
     builder.addCase(addTask.fulfilled, (state, action) => {
       state.loadingAddTask = false;
       state.tasks.push(action.payload);
     });
-    builder.addCase(addTask.rejected, (state, action) => {
+    builder.addCase(addTask.rejected, (state) => {
       state.loadingAddTask = false;
     });
     // updateTask
-    builder.addCase(updateTask.pending, (state, action) => {
+    builder.addCase(updateTask.pending, (state) => {
       state.loadingUpdateTask = true;
     });
     builder.addCase(updateTask.fulfilled, (state, action) => {
@@ -251,24 +251,24 @@ const taskSlice = createSlice({
         return task;
       });
     });
-    builder.addCase(updateTask.rejected, (state, action) => {
+    builder.addCase(updateTask.rejected, (state) => {
       state.loadingUpdateTask = false;
     });
 
     // deleteTask
-    builder.addCase(deleteTask.pending, (state, action) => {
+    builder.addCase(deleteTask.pending, (state) => {
       state.loadingDelteTask = true;
     });
     builder.addCase(deleteTask.fulfilled, (state, action) => {
       state.loadingDelteTask = false;
       state.tasks = state.tasks.filter((task) => task.id !== action.payload.id);
     });
-    builder.addCase(deleteTask.rejected, (state, action) => {
+    builder.addCase(deleteTask.rejected, (state) => {
       state.loadingDelteTask = false;
     });   
 
     // onChangeTaskState
-    builder.addCase(changeTaskState.pending, (state, action) => {
+    builder.addCase(changeTaskState.pending, (state) => {
       state.loadingUpdateTask = true;
     });
     builder.addCase(changeTaskState.fulfilled, (state, action) => {
@@ -280,31 +280,31 @@ const taskSlice = createSlice({
         return task;
       });
     });
-    builder.addCase(changeTaskState.rejected, (state, action) => {
+    builder.addCase(changeTaskState.rejected, (state) => {
       state.loadingUpdateTask = false;
     });
 
     // searchTaskByName
-    builder.addCase(searchTaskByName.pending, (state, action) => {
+    builder.addCase(searchTaskByName.pending, (state) => {
       state.loadingTasks = true;
     });
     builder.addCase(searchTaskByName.fulfilled, (state, action) => {
       state.loadingTasks = false;
       state.tasks = action.payload ?? [];
     });
-    builder.addCase(searchTaskByName.rejected, (state, action) => {
+    builder.addCase(searchTaskByName.rejected, (state) => {
       state.loadingTasks = false;
     });
 
     // onFilterTaskByState
-    builder.addCase(filterTaskByState.pending, (state, action) => {
+    builder.addCase(filterTaskByState.pending, (state) => {
       state.loadingTasks = true;
     });
     builder.addCase(filterTaskByState.fulfilled, (state, action) => {
       state.loadingTasks = false;
       state.tasks = action.payload ?? [];
     });
-    builder.addCase(filterTaskByState.rejected, (state, action) => {
+    builder.addCase(filterTaskByState.rejected, (state) => {
       state.loadingTasks = false;
     }); 
   }, 

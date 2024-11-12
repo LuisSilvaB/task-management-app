@@ -1,4 +1,3 @@
-import { TaskResolver } from "@/app/schema/task.schema";
 import { TaskType } from "@/app/types/taks.type";
 import { Button } from "@/components/ui/button";
 import {
@@ -8,7 +7,6 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-  DialogFooter,
 } from "@/components/ui/dialog"
 import useToggle from "@/hooks/useToggle.hook"
 import { MdDelete } from "react-icons/md";
